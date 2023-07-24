@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  
+  h1 {
+    margin-top: 80px;
+    
+    margin-left: 200px;
+    width:84rem;
+    
+    font-size: 25px;
+		margin-bottom: 10px;
+    background: #478fcf;
+		color: #fff;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-family: Arial, sans-serif;
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+		text-transform: uppercase;
+  }
+  table {
+    /* add this line */
+    border-collapse: collapse;
+    margin-left: 200px;
+    width:84rem;
+    
+    height: 500px;
+   
+    
+  }
+  table td:first-child {
+    background: #478fcf;
+    
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f3f6f7;
+  }
+  th {
+    background: #478fcf;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+  }
+  tr:nth-child(even) {
+    background: #f2f2f2;
+  }
+  tr:nth-child(odd) {
+    background-color: #ddd;
+  }
+  #myInput {
+    margin-left: 200px;
+    
+    background-image: url("{% static 'assets1/search.png' %}");
+    background-size: 20px 20px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 84rem;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  thead {
+    background-color: #054469;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  #domains-table tbody tr:hover {
+    background: white;
+  
+  }
+  
+</style>
+
+<br>
+<h1>Manage Domains</h1>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for title.." title="Type in a name">
+
+
+<table id="domains-table">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Title</th>
+      <th>Registered date</th>
+      <th>Due date</th>
+      <th>Domain Provider</th>
+      <th>Status</th>
+      <th>Notify</th>
+      <th>Domain Account</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for domain in domains %}
+      <tr>
+        <td>{{domain.source}}</td>
+        <td>{{ domain.title }}</td>
+        <td>{{ domain.registered_date }}</td>
+        <td>{{ domain.due_date }}</td>
+        <td>{{ domain.domain_provider  }}</td>
+        <td>{{ domain.status }}</td>
+        <td>{{ domain.notify }}</td>
+        <td>{{ domain.domain_account  }}</td>
+        <td><a href="{% url 'edit_domain' domain.id %}" class="btn btn-primary btn-sm">Edit</a></td>
+        <td><a href="{% url 'delete_domain' domain.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+        
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("domains-table");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      // loop through all td elements in each row
+      var match = false;
+      tds = tr[i].getElementsByTagName("td");
+      for (j = 0; j < tds.length; j++) {
+        td = tds[j];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            match = true;
+            break;
+          }
+        }
+      }
+      if (match) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+
+  
+  
+  </script>
+
+{% endblock %}

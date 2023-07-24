@@ -1,0 +1,59 @@
+{% comment %}
+The contents of this file should live in django/forms/templates/django/forms/widgets/*.html
+{% endcomment %}
+
+{% load i18n %}
+{% load tz %}
+
+{% block widget %}
+    {% spaceless %}
+        <input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|iriencode }}"{% endif %}{% if widget.attrs %}{% for key, value in widget.attrs.items %} {{ key }}="{{ value }}"{% endfor %}{% endif %}{% if widget.is_required %} required{% endif %}{% if widget.is_disabled %} disabled{% endif %}{% if widget.autofocus %} autofocus{% endif %}{% if widget.placeholder %} placeholder="{{ widget.placeholder }}"{% endif %}>
+    {% endspaceless %}
+{% endblock %}
+
+{% block textarea %}
+    {% spaceless %}
+        <textarea name="{{ widget.name }}"{% if widget.value|length %} rows="{{ widget.attrs.rows|default:"10" }}"{% endif %}{% if widget.is_required %} required{% endif %}{% if widget.is_disabled %} disabled{% endif %}{% if widget.autofocus %} autofocus{% endif %}{% if widget.placeholder %} placeholder="{{ widget.placeholder }}"{% endif %}{% if widget.attrs %}{% for key, value in widget.attrs.items %} {{ key }}="{{ value }}"{% endfor %}{% endif %}>{% if widget.value != None %}{{ widget.value|iriencode }}{% endif %}</textarea>
+    {% endspaceless %}
+{% endblock %}
+
+{% block hidden %}
+    {% spaceless %}
+        <input type="hidden" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|iriencode }}"{% endif %}>
+    {% endspaceless %}
+{% endblock %}
+
+{% block datepicker_widget %}
+    {% spaceless %}
+        <div class="input-group date datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+            {{ widget }}
+            <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block select %}
+    {% spaceless %}
+        <select name="{{ widget.name }}"{% if widget.attrs %}{% for key, value in widget.attrs.items %} {{ key }}="{{ value }}"{% endfor %}{% endif %}{% if widget.is_required %} required{% endif %}{% if widget.is_disabled %} disabled{% endif %}{% if widget.autofocus %} autofocus{% endif %}{% if widget.tabindex %} tabindex="{{ widget.tabindex }}"{% endif %}>
+            {% if not widget.is_required %}
+                <option value=""{% if widget.value is None %} selected{% endif %}>{{ widget.empty_label }}</option>
+            {% endif %}
+            {% for option in widget %}
+                <option value="{{ option.value|stringformat:'s' }}" {% if option.selected %}selected{% endif %}>{{ option.label }}</option>
+            {% endfor %}
+        </select>
+    {% endspaceless %}
+{% endblock %}
+
+{% block radio %}
+    {% spaceless %}
+        {% for choice in widget %}
+            <div class="form-check{% if widget.attrs.inline %} form-check-inline{% endif %}">
+                {{ choice.tag }}
+                <label for="{{ choice.id_for_label }}" class="form-check-label">{{ choice.choice_label }}</label>
+            </div>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock radio %}

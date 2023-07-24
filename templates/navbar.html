@@ -1,0 +1,67 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg  fixed-top ">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'assets1/pinelogo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+        PINESPHERE
+      </a>
+      
+          
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard' %}"><img src="{% static 'assets1/dash.png' %}" width="20" height="20" class="d-inline-block align-top" alt="Logo"> Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'manage' %}"><img src="{% static 'assets1/manage-icon.png' %}" width="20" height="20" class="d-inline-block align-top" alt="Logo"> Manage</a>
+      </li>
+     
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}"><img src="{% static 'assets1/logout-icon.png' %}" width="20" height="20" class="d-inline-block align-top" alt="Logo">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<style>
+  .navbar{
+    background-color: #f2edf3;
+  }
+
+  .navbar-nav a {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .navbar-brand {
+    
+
+    color: black;
+    border-radius: 5px;
+   
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+}
+
+  
+
+
+  .navbar-nav .nav-link {
+    margin-left: 10px;
+    background-color: white;
+    color: black;
+  }
+
+  .navbar {
+    position: fixed;
+    z-index: 100;
+  }
+</style>

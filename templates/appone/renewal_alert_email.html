@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Renewal Alert</title>
+</head>
+<body>
+    <h1>Renewal Alert: {{ domain.title }}</h1>
+    {% if days_left == 31 %}
+    <p>Dear {{ domain.domain_account }},</p>
+    <p>This is a reminder that your domain <strong>{{ domain.title }}</strong> is due for renewal in 1 month, on {{ domain.due_date }}.</p>
+    {% elif days_left == 7 %}
+    <p>Dear {{ domain.domain_account }},</p>
+    <p>This is a reminder that your domain <strong>{{ domain.title }}</strong> is due for renewal in 1 week, on {{ domain.due_date }}.</p>
+    {% elif days_left == 1 %}
+    <p>Dear {{ domain.domain_account }},</p>
+    <p>This is a reminder that your domain <strong>{{ domain.title }}</strong> is due for renewal tomorrow, on {{ domain.due_date }}.</p>
+    {% else %}
+    <p>Dear {{ domain.domain_account }},</p>
+    <p>This is a reminder that your domain <strong>{{ domain.title }}</strong> is due for renewal in {{ days_left }} days, on {{ domain.due_date }}.</p>
+    {% endif %}
+    <p>Please ensure that you renew your domain before the expiration date to avoid any disruptions to your website or email services.</p>
+    <p>Thank you for choosing us as your domain provider.</p>
+    <p>Sincerely,</p>
+    <p>The Domain Management Team</p>
+</body>
+</html>
+

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-top: 100px;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    max-width: 400px;
+  }
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  .card-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+  #savebutton {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    
+    border: none;
+    text-decoration: none;
+  }
+  #savebutton:hover {
+    background-color: #2e75b6;
+  }
+  h1{
+    background: linear-gradient(to bottom, #0d509c , #3585e0   );
+    color: white;
+    max-width: 400px;
+
+   
+  }
+</style>
+
+<
+    <div class="col-md-6 mx-auto">
+      <h1 class="text-center mb-4">{{ domain.source }}</h1>
+      <div class="card">
+        <h5 class="card-title">{{ domain.title }}</h5>
+        <p class="card-text"><strong>Domain created:</strong> {{ domain.registered_date }}</p>
+        <p class="card-text"><strong>Domain due date:</strong> {{ domain.due_date }}</p>
+        <button type="button" class="btn btn-primary id=savebutton " style="background: linear-gradient(to bottom, #8ed1fc 0%, #4c97db 100%);
+        box-shadow: 2px 2px 10px #18507c;">
+          <a href="{% url 'dashboard' %}" class="text-white" >OK</a>
+        </button>
+      </div>
+    </div>
+
+
+
+{% endblock %}

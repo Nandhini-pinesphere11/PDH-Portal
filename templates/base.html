@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pinesphere</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+      html {
+        background-color: #f2edf3;
+      }
+      .container-fluid{
+        background-color: #f2edf3;
+      }
+      .col-md-3{
+        background-color: #f2edf3;
+      }
+      .col-md-9{
+        background-color: #f2edf3;
+      
+      }
+    </style>
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+  <div class="container-fluid">
+   
+      <div class="col-md-3">
+        {% include 'sidebar.html' %}
+      </div>
+      <div class="col-md-9">{% block content %}{% endblock %}</div>
+   
+  </div>
+
+
+</body>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper-core.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</html>

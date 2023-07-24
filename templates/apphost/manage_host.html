@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  
+  h1 {
+    margin-top: 80px;
+    
+    margin-left: 200px;
+    width:111.5rem;
+    
+    font-size: 25px;
+		margin-bottom: 10px;
+		background: #478fcf;
+		color: #fff;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-family: Arial, sans-serif;
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+		text-transform: uppercase;
+  }
+  table {
+    /* add this line */
+    border-collapse: collapse;
+    margin-left: 200px;
+    width: 84rem;
+    max-width: calc(100% - 200px); /* make the table width the same as the remaining width of the page */
+    height: 500px;
+  }
+  table td:first-child {
+    background: #478fcf;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  thead {
+    background-color: #054469;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f3f6f7;
+    white-space: nowrap;
+  }
+  th {
+    background: #478fcf;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+  }
+  tr:nth-child(even) {
+    background: #f2f2f2;
+  }
+  tr:nth-child(odd) {
+    background-color: #ddd;
+  }
+  #hosting-table tbody tr:hover {
+    background: white;
+  }
+  
+  #myInput {
+    margin-left: 200px;
+    
+    background-image: url("{% static 'assets1/search.png' %}");
+    background-size: 20px 20px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width:111.5rem;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+ 
+  
+  
+  
+  
+</style>
+
+<br>
+<h1>Manage Hosting</h1>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for title.." title="Type in a name">
+
+
+<table id="hosting-table">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Title</th>
+      <th>Site</th>
+      <th>Purchased date</th>
+      <th>Renewal date</th>
+      <th>Website hosting</th>
+      <th>Domain purchased</th>
+      <th>Dns transferred from</th>
+      <th>Hosting account</th>
+      <th>Notify</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for host in hosting %}
+      <tr>
+        <td>{{host.source}}</td>
+        <td>{{ host.title }}</td>
+        <td>{{ host.site }}</td>
+        <td>{{ host.purchased_date }}</td>
+        <td>{{ host.renewal_date }}</td>
+        <td>{{ host.website_hosting }}</td>
+        <td>{{ host.domain_purchased }}</td>
+        <td>{{ host.dns_transferred_from }}</td>
+        <td>{{ host.hosting_account }}</td>
+        <td>{{ host.notify }}</td>
+        <td><a href="{% url 'edit_hosting' host.id %}" class="btn btn-primary btn-sm">Edit</a></td>
+        <td><a href="{% url 'delete_hosting' host.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("hosting-table");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      // loop through all td elements in each row
+      var match = false;
+      tds = tr[i].getElementsByTagName("td");
+      for (j = 0; j < tds.length; j++) {
+        td = tds[j];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            match = true;
+            break;
+          }
+        }
+      }
+      if (match) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+
+
+
+  
+  
+  </script>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row" id="table">
+  <div class="col-md-7">
+    <h10>UPCOMING DOMAIN RENEWALS</h10>
+
+    <hr>
+    <div class="card">
+      <div class="card-body">
+        <a class="btn btn-primary btn-sm btn-block" href="{% url 'manage' %}" style="background: #478fcf;">
+          DOMAIN
+        </a>
+        <hr>
+      <table style="border-collapse: collapse; width: 100%; text-align: left;">
+        <thead style="background-color: white;">
+          <tr>
+            <th style="padding: 12px; border: 1px solid #ddd;">Project</a>
+            </th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Source</a>
+            </th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Registered date</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Due date</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Domain Provider</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Status</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Notify</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Domain Account</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for domain in domains %}
+          <tr style="border: 1px solid white;">
+            <td style="padding: 12px;">
+              {{ domain.title }}
+            <td style="padding: 12px;">
+              {{ domain.source }}
+            </td>
+            
+            <td style="padding: 12px;">{{ domain.registered_date }}</td>
+            <td style="padding: 12px;">{{ domain.due_date }}</td>
+            <td style="padding: 12px;">{{ domain.domain_provider  }}</td>
+            <td style="padding: 12px;">{{ domain.status }}</td>
+            <td style="padding: 12px;">{{ domain.notify }}</td>
+            <td style="padding: 12px;">{{ domain.domain_account  }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+<style>
+  
+   h10 {
+			margin-top: 100px;      
+			background: #478fcf;
+	    
+	    
+      color: white;
+
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-family: Arial, sans-serif;
+			font-size: 20px;
+			font-weight: bold;
+			text-align: center;
+			text-transform: uppercase;
+
+		}
+  
+  thead {
+    background: #478fcf;
+	  border: 1px solid #ddd;
+	  box-shadow: 2px 2px white, -2px -2px white;
+    color: black;
+
+  }
+
+  table tbody tr:hover {
+    background-color: white;
+    }
+    
+
+
+  tbody tr:nth-child(even) {
+    background: linear-gradient(to bottom, #b4b5b6, white, white, #b4b5b6)
+  }
+
+  tbody tr:nth-child(odd) {
+    background: linear-gradient(to bottom, #b4b5b6, white, white, #b4b5b6)
+  }
+  
+  #table {
+    margin-top: 100px;
+    
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    white-space: nowrap;
+ 
+
+  }
+  #table tbody tr:hover {
+    background: white;
+  
+  }
+
+  .card {
+    margin-right:40px;
+    width: 80rem;
+    
+  }
+  
+  .container-table {
+    width: 100%;
+  }
+  
+</style>
+{% endblock %}
